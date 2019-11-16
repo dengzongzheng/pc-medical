@@ -36,9 +36,10 @@ export function setAuthority(authority: string | string[]): void {
 
 
 export function setToken(token:string) {
-  localStorage.setItem(tokenKey, JSON.stringify(token));
+  console.log("token:" + token);
+  localStorage.setItem(tokenKey, token);
 }
 
 export function getToken() {
-  localStorage.getItem(tokenKey);
+  return localStorage.getItem(tokenKey);
 }

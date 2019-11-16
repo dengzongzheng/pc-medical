@@ -3,10 +3,9 @@ import defaultSettings from './defaultSettings'; // https://umijs.org/config/
 
 import slash from 'slash2';
 import webpackPlugin from './plugin.config';
-const { pwa, primaryColor } = defaultSettings;
-
-// preview.pro.ant.design only do not use in your production ;
+const { pwa, primaryColor } = defaultSettings; // preview.pro.ant.design only do not use in your production ;
 // preview.pro.ant.design 专用环境变量，请不要在你的项目中使用它。
+
 const { ANT_DESIGN_PRO_ONLY_DO_NOT_USE_IN_YOUR_PRODUCTION } = process.env;
 const isAntDesignProPreview = ANT_DESIGN_PRO_ONLY_DO_NOT_USE_IN_YOUR_PRODUCTION === 'site';
 const basicAuthorization = 'Y2xpZW50XzE6MTIzNDU2';
@@ -38,8 +37,7 @@ const plugins: IPlugin[] = [
               importWorkboxFrom: 'local',
             },
           }
-        : false,
-      // default close dll, because issue https://github.com/ant-design/ant-design-pro/issues/4665
+        : false, // default close dll, because issue https://github.com/ant-design/ant-design-pro/issues/4665
       // dll features https://webpack.js.org/plugins/dll-plugin/
       // dll: {
       //   include: ['dva', 'dva/router', 'dva/saga', 'dva/fetch'],
@@ -114,32 +112,32 @@ export default {
             },
             {
               path: '/system_user_manage',
-              name: '系统用户管理',
-              component: './Welcome',
+              name: 'system_user_manage',
+              component: './system_user',
             },
             {
               path: '/register_user_manage',
-              name: '注册用户管理',
-              component: './Welcome',
+              name: 'register_user_manage',
+              component: './register_user',
             },
             {
               path: '/public',
-              name: '公共场所监督',
+              name: 'public',
               component: './Welcome',
             },
             {
               path: '/hospital',
-              name: '医疗机构监督',
+              name: 'hospital',
               component: './Welcome',
             },
             {
               path: '/school',
-              name: '学校卫生监督',
+              name: 'school',
               component: './Welcome',
             },
             {
               path: '/water_supply',
-              name: '供水单位监督',
+              name: 'water_supply',
               component: './Welcome',
             },
             {
@@ -159,7 +157,6 @@ export default {
         },
       ],
     },
-
     {
       component: './404',
     },
@@ -170,8 +167,9 @@ export default {
   },
   define: {
     ANT_DESIGN_PRO_ONLY_DO_NOT_USE_IN_YOUR_PRODUCTION:
-      ANT_DESIGN_PRO_ONLY_DO_NOT_USE_IN_YOUR_PRODUCTION || '', // preview.pro.ant.design only do not use in your production ; preview.pro.ant.design 专用环境变量，请不要在你的项目中使用它。
-    basicAuthorization:basicAuthorization
+      ANT_DESIGN_PRO_ONLY_DO_NOT_USE_IN_YOUR_PRODUCTION || '',
+    // preview.pro.ant.design only do not use in your production ; preview.pro.ant.design 专用环境变量，请不要在你的项目中使用它。
+    basicAuthorization: basicAuthorization,
   },
   ignoreMomentLocale: true,
   lessLoaderOptions: {
@@ -185,7 +183,7 @@ export default {
         resourcePath: string;
       },
       _: string,
-      localName: string,
+      localName: string
     ) => {
       if (
         context.resourcePath.includes('node_modules') ||
@@ -217,12 +215,16 @@ export default {
     '/api/': {
       target: 'http://127.0.0.1:9080',
       changeOrigin: true,
-      pathRewrite: { '^/server': '' },
+      pathRewrite: {
+        '^/server': '',
+      },
     },
     '/oauth/': {
       target: 'http://127.0.0.1:9080',
       changeOrigin: true,
-      pathRewrite: { '^/server': '' },
+      pathRewrite: {
+        '^/server': '',
+      },
     },
   },
 } as IConfig;
