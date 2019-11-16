@@ -108,7 +108,38 @@ export default {
             {
               path: '/welcome',
               name: 'welcome',
+              hideInMenu: true,
               icon: 'smile',
+              component: './Welcome',
+            },
+            {
+              path: '/system_user_manage',
+              name: '系统用户管理',
+              component: './Welcome',
+            },
+            {
+              path: '/register_user_manage',
+              name: '注册用户管理',
+              component: './Welcome',
+            },
+            {
+              path: '/public',
+              name: '公共场所监督',
+              component: './Welcome',
+            },
+            {
+              path: '/hospital',
+              name: '医疗机构监督',
+              component: './Welcome',
+            },
+            {
+              path: '/school',
+              name: '学校卫生监督',
+              component: './Welcome',
+            },
+            {
+              path: '/water_supply',
+              name: '供水单位监督',
               component: './Welcome',
             },
             {
