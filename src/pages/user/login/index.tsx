@@ -21,6 +21,7 @@ interface LoginProps {
 }
 interface LoginState {
   type: string;
+  grant_type: string,
   autoLogin: boolean;
 }
 
@@ -33,6 +34,7 @@ class Login extends Component<LoginProps, LoginState> {
 
   state: LoginState = {
     type: 'account',
+    grant_type: 'password',
     autoLogin: true,
   };
 
@@ -43,7 +45,7 @@ class Login extends Component<LoginProps, LoginState> {
   };
 
   handleSubmit = (err: unknown, values: LoginParamsType) => {
-    const { type } = this.state;
+    const { type,grant_type } = this.state;
     if (!err) {
       const { dispatch } = this.props;
       dispatch({
@@ -51,6 +53,7 @@ class Login extends Component<LoginProps, LoginState> {
         payload: {
           ...values,
           type,
+          grant_type
         },
       });
     }
@@ -82,8 +85,8 @@ class Login extends Component<LoginProps, LoginState> {
                 formatMessage({ id: 'user-login.login.message-invalid-credentials' }),
               )}
             <UserName
-              name="userName"
-              placeholder={`${formatMessage({ id: 'user-login.login.userName' })}: admin or user`}
+              name="username"
+              placeholder="请输入用户名"
               rules={[
                 {
                   required: true,
@@ -93,7 +96,7 @@ class Login extends Component<LoginProps, LoginState> {
             />
             <Password
               name="password"
-              placeholder={`${formatMessage({ id: 'user-login.login.password' })}: ant.design`}
+              placeholder="请输入用户密码"
               rules={[
                 {
                   required: true,

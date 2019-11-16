@@ -1,9 +1,11 @@
 import { reloadAuthorized } from './Authorized';
+const tokenKey:string = "medical-token";
+const authorityKey:string = "antd-pro-authority";
 
 // use localStorage to store the authority info, which might be sent from server in actual project.
 export function getAuthority(str?: string): string | string[] {
   const authorityString =
-    typeof str === 'undefined' && localStorage ? localStorage.getItem('antd-pro-authority') : str;
+    typeof str === 'undefined' && localStorage ? localStorage.getItem(authorityKey) : str;
   // authorityString could be admin, "admin", ["admin"]
   let authority;
   try {
@@ -26,7 +28,17 @@ export function getAuthority(str?: string): string | string[] {
 
 export function setAuthority(authority: string | string[]): void {
   const proAuthority = typeof authority === 'string' ? [authority] : authority;
-  localStorage.setItem('antd-pro-authority', JSON.stringify(proAuthority));
+  localStorage.setItem(authorityKey, JSON.stringify(proAuthority));
   // auto reload
   reloadAuthorized();
+}
+
+
+
+export function setToken(token:string) {
+  localStorage.setItem(tokenKey, JSON.stringify(token));
+}
+
+export function getToken() {
+  localStorage.getItem(tokenKey);
 }

@@ -4,7 +4,7 @@ import { Effect } from 'dva';
 import { stringify } from 'querystring';
 
 import { fakeAccountLogin, getFakeCaptcha } from '@/services/login';
-import { setAuthority } from '@/utils/authority';
+import { setAuthority,setToken } from '@/utils/authority';
 import { getPageQuery } from '@/utils/utils';
 
 export interface StateType {
@@ -36,6 +36,7 @@ const Model: LoginModelType = {
   effects: {
     *login({ payload }, { call, put }) {
       const response = yield call(fakeAccountLogin, payload);
+      response["status"] = 'ok';
       yield put({
         type: 'changeLoginStatus',
         payload: response,
@@ -82,7 +83,8 @@ const Model: LoginModelType = {
 
   reducers: {
     changeLoginStatus(state, { payload }) {
-      setAuthority(payload.currentAuthority);
+      setAuthority(['admin']);
+      setToken(payload.access_token);
       return {
         ...state,
         status: payload.status,
