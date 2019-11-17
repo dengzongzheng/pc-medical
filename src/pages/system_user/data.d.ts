@@ -1,6 +1,9 @@
 export interface TableListItem {
   userName: string,
   status: number,
+  password?: string;
+  organizations?: [];
+  userNo?: string;
   statusName: string
 }
 

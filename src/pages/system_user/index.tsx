@@ -189,6 +189,7 @@ class TableList extends Component<TableListProps, TableListState> {
   };
 
   handleUpdateModalVisible = (flag?: boolean, record?: FormValsType) => {
+    console.log(record);
     this.setState({
       updateModalVisible: !!flag,
       stepFormValues: record || {},
@@ -203,22 +204,24 @@ class TableList extends Component<TableListProps, TableListState> {
         ...param
       },
     });
-    message.success('添加成功');
+    message.success('新建成功');
     this.handleModalVisible();
   };
 
   handleUpdate = (fields: FormValsType) => {
-    // const { dispatch } = this.props;
-    // dispatch({
-    //   type: 'tableList/update',
-    //   payload: {
-    //     name: fields.name,
-    //     desc: fields.desc,
-    //     key: fields.key,
-    //   },
-    // });
-
-    message.success('配置成功');
+    console.log(fields);
+    const { dispatch } = this.props;
+    dispatch({
+      type: 'tableList/update',
+      payload: {
+        ...fields
+      },
+    });
+    dispatch({
+      type: 'tableList/fetch',
+      payload: {},
+    });
+    message.success('修改成功');
     this.handleUpdateModalVisible();
   };
 

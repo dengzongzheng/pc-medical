@@ -1,6 +1,6 @@
 import { AnyAction, Reducer } from 'redux';
 import { EffectsCommandMap } from 'dva';
-import { addSystemUser,listSystemUser } from './service';
+import { addSystemUser,listSystemUser,updateSystemUser } from './service';
 
 import { TableListData } from './data.d';
 
@@ -19,6 +19,7 @@ export interface ModelType {
   effects: {
     fetch: Effect;
     add: Effect;
+    update: Effect;
   };
   reducers: {
     save: Reducer<any>;
@@ -53,6 +54,10 @@ const Model: ModelType = {
         type: 'save',
         payload: response,
       });
+      if (callback) callback();
+    },
+    *update({ payload, callback }, { call, put }) {
+      yield call(updateSystemUser, payload);
       if (callback) callback();
     },
   },
