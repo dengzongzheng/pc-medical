@@ -1,6 +1,7 @@
 export default {
   'menu.welcome': '欢迎',
   'menu.system_user_manage': '系统用户管理',
+  'menu.system_user_detail': '系统用户详情',
   'menu.register_user_manage': '注册用户管理',
   'menu.system_user.system_user_list': '系统用户',
   'menu.system_user.system_user_detail': '用户详情',

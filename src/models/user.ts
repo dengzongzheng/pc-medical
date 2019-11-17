@@ -60,9 +60,14 @@ const UserModel: UserModelType = {
 
   reducers: {
     saveCurrentUser(state, action) {
+      console.log(action.payload);
+      let user = {};
+      user["name"] = action.payload.data;
+      user["userid"] = action.payload.data;
+      user["avatar"] = 'https://gw.alipayobjects.com/zos/antfincdn/XAosXuNZyF/BiazfanxmamNRoxxVxka.png';
       return {
         ...state,
-        currentUser: action.payload || {},
+        currentUser: user || {},
       };
     },
     changeNotifyCount(

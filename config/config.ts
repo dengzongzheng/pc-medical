@@ -114,7 +114,15 @@ export default {
               path: '/system_user_manage',
               icon: 'appstore',
               name: 'system_user_manage',
+              hideChildrenInMenu:true,
               component: './system_user',
+            },
+            {
+              name: 'system_user_detail',
+              icon: 'smile',
+              hideInMenu: true,
+              path: '/system_user_manage/detail/:userNo',
+              component: './system_user/detail',
             },
             {
               path: '/register_user_manage',

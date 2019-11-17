@@ -22,7 +22,7 @@ import CreateForm from './components/CreateForm';
 import StandardTable, { StandardTableColumnProps } from './components/StandardTable';
 import UpdateForm, { FormValsType } from './components/UpdateForm';
 import { TableListItem, TableListPagination, TableListParams } from './data.d';
-
+import Link from 'umi/link';
 import styles from './style.less';
 
 const FormItem = Form.Item;
@@ -96,7 +96,7 @@ class TableList extends Component<TableListProps, TableListState> {
         <Fragment>
           <a onClick={() => this.handleUpdateModalVisible(true, record)}>修改</a>
           <Divider type="vertical" />
-          <a href="">详情</a>
+          <Link to= {`/system_user_manage/detail/${record.userNo}`}>查看详情</Link>
         </Fragment>
       ),
     },
