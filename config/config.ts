@@ -112,31 +112,37 @@ export default {
             },
             {
               path: '/system_user_manage',
+              icon: 'appstore',
               name: 'system_user_manage',
               component: './system_user',
             },
             {
               path: '/register_user_manage',
+              icon: 'contacts',
               name: 'register_user_manage',
               component: './register_user',
             },
             {
               path: '/public',
+              icon: 'database',
               name: 'public',
               component: './Welcome',
             },
             {
               path: '/hospital',
+              icon: 'reconciliation',
               name: 'hospital',
               component: './Welcome',
             },
             {
               path: '/school',
+              icon: 'gold',
               name: 'school',
               component: './Welcome',
             },
             {
               path: '/water_supply',
+              icon: 'alert',
               name: 'water_supply',
               component: './Welcome',
             },
