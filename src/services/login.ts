@@ -20,7 +20,7 @@ export async function fakeAccountLogin(params: LoginParamsType) {
       const { response } = error;
       if (response && response.status) {
         const { status } = response;
-        if (status === 400) {
+        if (status === 400 || status===401) {
           notification.error({
             message: '登录失败',
             description: '用户名或密码错误',

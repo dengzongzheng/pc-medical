@@ -227,6 +227,7 @@ export default {
   chainWebpack: webpackPlugin,
   proxy: {
     '/api/': {
+      // target: 'http://127.0.0.1:9080',
       target: 'http://api.sswjjd.cn',
       changeOrigin: true,
       pathRewrite: {
@@ -234,6 +235,7 @@ export default {
       },
     },
     '/oauth/': {
+      // target: 'http://127.0.0.1:9080',
       target: 'http://api.sswjjd.cn',
       changeOrigin: true,
       pathRewrite: {

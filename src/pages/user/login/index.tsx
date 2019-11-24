@@ -1,4 +1,4 @@
-import { Alert,} from 'antd';
+import {Alert, message,} from 'antd';
 import { FormattedMessage, formatMessage } from 'umi-plugin-react/locale';
 import React, { Component } from 'react';
 
@@ -11,6 +11,7 @@ import LoginComponents from './components/Login';
 import styles from './style.less';
 import { LoginParamsType } from '@/services/login';
 import { ConnectState } from '@/models/connect';
+import {getPageQuery} from "@/utils/utils";
 
 const { Tab, UserName, Password,  Submit } = LoginComponents;
 
@@ -33,7 +34,7 @@ class Login extends Component<LoginProps, LoginState> {
   loginForm: FormComponentProps['form'] | undefined | null = undefined;
 
   state: LoginState = {
-    type: 'account',
+    type: 'admin_user',
     grant_type: 'password',
     autoLogin: true,
   };
@@ -43,6 +44,14 @@ class Login extends Component<LoginProps, LoginState> {
       autoLogin: e.target.checked,
     });
   };
+
+  componentDidMount(): void {
+    const params = getPageQuery();
+    let { from } = params as { from: string };
+    if(from && from ==="401"){
+      message.warn('登录状态已过期了，请重新登录', 3);
+    }
+  }
 
   handleSubmit = (err: unknown, values: LoginParamsType) => {
     const { type,grant_type } = this.state;
@@ -67,11 +76,10 @@ class Login extends Component<LoginProps, LoginState> {
   render() {
     const { userLogin, submitting } = this.props;
     const { status, type: loginType } = userLogin;
-    const { type } = this.state;
     return (
       <div className={styles.main}>
         <LoginComponents
-          defaultActiveKey={type}
+          defaultActiveKey={"account"}
           onSubmit={this.handleSubmit}
           onCreate={(form?: FormComponentProps['form']) => {
             this.loginForm = form;
@@ -111,7 +119,7 @@ class Login extends Component<LoginProps, LoginState> {
               }}
             />
           </Tab>
-          <Submit loading={submitting}>
+          <Submit>
             <FormattedMessage id="user-login.login.login" />
           </Submit>
         </LoginComponents>

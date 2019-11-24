@@ -5,6 +5,7 @@
 import { extend } from 'umi-request';
 import { notification } from 'antd';
 
+
 const codeMessage = {
   200: '服务器成功返回请求的数据。',
   201: '新建或修改数据成功。',
@@ -28,6 +29,12 @@ const codeMessage = {
  */
 const errorHandler = (error: { response: Response }): Response => {
   const { response } = error;
+
+  console.log(response.status + " ----");
+  if (response && (response.status === 401 || response.status===403)) {
+    window.location.href = "/user/login?from=401";
+  }
+
   if (response && response.status) {
     const errorText = codeMessage[response.status] || response.statusText;
 
