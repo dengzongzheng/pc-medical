@@ -6,6 +6,7 @@ export default {
   'menu.system_user.system_user_list': '系统用户',
   'menu.system_user.system_user_detail': '用户详情',
   'menu.supervision_user': '监督用户管理',
+  'menu.supervise_manage': '监督管理',
   'menu.supervision_user.supervision_user_list': '监督用户',
   'menu.supervision': '监督管理',
   'menu.public': '公共场所管理',
